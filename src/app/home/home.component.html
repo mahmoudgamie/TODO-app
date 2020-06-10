@@ -11,19 +11,17 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Country</th>
-                <th scope="col">Area</th>
-                <th scope="col">Population</th>
+                <th scope="col">Title</th>
+                <th scope="col">Status</th>
+                <th scope="col">Created By</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th></th>
-                <td>
-                  name1
-                </td>
-                <td>nam2</td>
-                <td>name3</td>
+              <tr *ngFor="let item of todoList; let i=index">
+                <th>{{i + 1}}</th>
+                <td>{{ item.title }}</td>
+                <td>{{ item.isDone }}</td>
+                <td>{{ item.createdByUserId }}</td>
               </tr>
             </tbody>
           </table>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/services/auth.service';
-import { DataService } from 'src/services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -9,20 +8,19 @@ import { DataService } from 'src/services/data.service';
 })
 export class AppComponent implements OnInit {
 
-  status: string;
+  isAuthenticated: boolean;
   title = 'TODO-app';
 
-  constructor(private auth: AuthService, private data: DataService) {
+  constructor(private auth: AuthService) {
 
   }
 
   ngOnInit(): void {
-    this.data.sharedMessage.subscribe(message => this.status = message)
+    this.auth.getAuthentication.subscribe(auth => this.isAuthenticated = auth);
   }
 
   logout(): void {
     this.auth.logout();
-    this.data.nextMessage('')
   }
 
 }
