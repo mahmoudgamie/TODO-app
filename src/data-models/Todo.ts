@@ -1,7 +1,7 @@
-export interface Todo {
-  id: string;
+export class Todo {
+  id: number;
   title: string;
   isDone: boolean;
-  createdByUserId: string;
+  createdByUserId: number;
   createdAt: string;
 }

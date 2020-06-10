@@ -11,11 +11,13 @@ export class HomeComponent implements OnInit {
 
   todoList: Todo[];
 
-  constructor(private todoservice: TodoService) { }
+  constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
-    this.todoList = this.todoservice.getTodoList();
+    this.todoList = this.todoService.getTodoList();
     localStorage.setItem('todoList', JSON.stringify(this.todoList));
   }
 
+
+  
 }
