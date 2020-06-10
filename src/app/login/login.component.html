@@ -5,7 +5,7 @@
         <h3 class="mb-0">Login</h3>
       </div>
       <div class="card-body">
-        <form class="form" [formGroup]="loginForm" (submit)="loginUser()">
+        <form class="form" [formGroup]="loginForm" (submit)="loginUser(loginForm)">
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" autocomplete="off" id="username" formControlName="username"

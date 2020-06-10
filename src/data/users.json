@@ -9,11 +9,11 @@
     "id": 2,
     "username": "contributor",
     "password": "welcome",
-    "role": "CONTRIBUTER"
+    "role": "CONTRIBUTOR"
   },
   {
     "id": 3,
-    "username": "viewe",
+    "username": "viewer",
     "password": "welcome",
     "role": "VIEWER"
   }
