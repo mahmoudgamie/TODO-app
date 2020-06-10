@@ -43,8 +43,9 @@ export class TodoService {
     localStorage.setItem('todoList', JSON.stringify(this.todoList))
   }
 
-  deleteTodoItem(id: string) {
-
+  deleteTodoItem(index: number) {
+    this.todoList.splice(index, 1);
+    localStorage.setItem('todoList', JSON.stringify(this.todoList))
   }
 
   generateTodoItemId(): number {

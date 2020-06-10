@@ -21,7 +21,7 @@ export class CreateOrEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
-      if (params) {
+      if (params.id) {
         this.formMode = 'edit';
         this.todoItemIndex = parseInt(params.id);
         this.todoItem = this.todoService.getTodoItemByIndex(this.todoItemIndex);
