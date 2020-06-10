@@ -9,13 +9,18 @@
         <form class="form" [formGroup]="controlForm" (submit)="saveForm()">
           <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" autocomplete="off" id="title" formControlName="title" class="form-control rounded-0"
-              required>
+            <input #titleInput type="text" autocomplete="off" id="title" formControlName="title"
+              class="form-control rounded-0" required>
           </div>
           <div class="form-group" *ngIf="formMode === 'edit'">
             <label for="status">Status</label>
             <ng-select labelForId="status" [items]="statusValues" formControlName="status" placeholder="Select Status">
             </ng-select>
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" [checked]="createAnotherTodo" (change)="createAnotherTodo = !createAnotherTodo"
+              class="form-check-input" id="create-another-todo">
+            <label class="form-check-label" for="create-another-todo">Create Another TODO</label>
           </div>
           <div class="d-flex justify-content-end">
             <a routerLink="/home" class="btn btn-danger m-1">Cancel</a>

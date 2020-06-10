@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TodoService } from 'src/services/todo.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -9,13 +9,14 @@ import { Todo } from 'src/data-models/Todo';
   templateUrl: './create-or-edit.component.html',
   styleUrls: ['./create-or-edit.component.css']
 })
-export class CreateOrEditComponent implements OnInit {
-
+export class CreateOrEditComponent implements OnInit, AfterViewInit {
+  @ViewChild('titleInput') titleInput: ElementRef;
   controlForm: FormGroup
   todoItemIndex: number;
   todoItem: Todo;
   statusValues = ['Pending', 'Started', 'Completed'];
   formMode: string;
+  createAnotherTodo: boolean;
 
   constructor(private fb: FormBuilder, private todoService: TodoService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -30,6 +31,11 @@ export class CreateOrEditComponent implements OnInit {
     this.buildForm();
   }
 
+  ngAfterViewInit() {
+    this.titleInput.nativeElement.focus();
+  }
+
+
   buildForm(): void {
     this.controlForm = this.fb.group({
       title: [this.todoItem ? this.todoItem.title : '', Validators.required],
@@ -41,7 +47,13 @@ export class CreateOrEditComponent implements OnInit {
   createTodoItem() {
     const title = this.controlForm.get('title').value;
     this.todoService.addTodoItem(title);
-    this.router.navigate(['/home']);
+    if (this.createAnotherTodo) {
+      this.controlForm.reset();
+      this.titleInput.nativeElement.focus();
+    } else {
+      this.router.navigate(['/home']);
+    }
+
   }
 
   updateTodoItem() {
