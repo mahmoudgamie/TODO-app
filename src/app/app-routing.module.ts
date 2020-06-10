@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CreateOrEditComponent } from './create-or-edit/create-or-edit.component';
+import { AuthGuardService } from 'src/services/auth-guard.service';
 
 
 const routes: Routes = [
@@ -13,19 +14,22 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'create',
-    component: CreateOrEditComponent
+    component: CreateOrEditComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'edit/:id',
-    component: CreateOrEditComponent
+    component: CreateOrEditComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 
