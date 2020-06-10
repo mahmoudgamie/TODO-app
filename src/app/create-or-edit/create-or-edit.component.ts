@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-or-edit',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateOrEditComponent implements OnInit {
 
-  constructor() { }
+  controlForm: FormGroup
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.buildForm();
   }
 
+  buildForm(): void {
+    this.controlForm = this.fb.group({
+      title: ['', Validators.required],
+    })
+  }
+
+  submitForm(): void {
+    console.log('logged');
+    
+  }
 }
