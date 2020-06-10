@@ -1,0 +1,51 @@
+[
+  {
+    "id": "1",
+    "title": "Wash the dishes",
+    "isDone": true,
+    "createdByUserId": "1",
+    "createdAt": ""
+  },
+  {
+    "id": "2",
+    "title": "Iron the clothes",
+    "isDone": false,
+    "createdByUserId": "2",
+    "createdAt": ""
+  },
+  {
+    "id": "3",
+    "title": "Go shopping",
+    "isDone": true,
+    "createdByUserId": "3",
+    "createdAt": ""
+  },
+  {
+    "id": "4",
+    "title": "Call my laywer",
+    "isDone": true,
+    "createdByUserId": "1",
+    "createdAt": ""
+  },
+  {
+    "id": "5",
+    "title": "Update my computer",
+    "isDone": false,
+    "createdByUserId": "2",
+    "createdAt": ""
+  },
+  {
+    "id": "6",
+    "title": "Wash the car",
+    "isDone": true,
+    "createdByUserId": "2",
+    "createdAt": ""
+  },
+  {
+    "id": "7",
+    "title": "Feed my cat",
+    "isDone": false,
+    "createdByUserId": "3",
+    "createdAt": ""
+  }
+]
