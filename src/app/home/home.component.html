@@ -14,14 +14,22 @@
                 <th scope="col">Title</th>
                 <th scope="col">Status</th>
                 <th scope="col">Created By</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of todoList; let i=index">
                 <th>{{i + 1}}</th>
                 <td>{{ item.title }}</td>
-                <td>{{ item.isDone }}</td>
+                <td>{{ item.status }}</td>
                 <td>{{ item.createdByUserId }}</td>
+                <td>
+                  <a routerLink="/edit/{{i}}" class="btn btn-outline-primary">Edit</a>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-outline-danger">Delete</button>
+                </td>
               </tr>
             </tbody>
           </table>

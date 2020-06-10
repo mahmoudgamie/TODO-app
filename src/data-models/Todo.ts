@@ -1,7 +1,7 @@
+
 export class Todo {
   id: number;
   title: string;
-  isDone: boolean;
+  status: string;
   createdByUserId: number;
-  createdAt: string;
 }

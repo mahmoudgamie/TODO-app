@@ -23,18 +23,24 @@ export class TodoService {
     return this.todoList;
   }
 
+  getTodoItemByIndex(index: number): Todo {
+    return this.todoList[index];
+  }
+
   addTodoItem(title: string): void {
     let todoItem = new Todo();
     todoItem.title = title;
     todoItem.createdByUserId = this.currentUser.id;
-    todoItem.isDone = false;
+    todoItem.status = "Pending";
     this.todoList.push(todoItem);
     localStorage.setItem('todoList', JSON.stringify(this.todoList))
   }
 
 
-  updateTodoItem(id: string) {
-
+  updateTodoItem(index: number, title: string, status: string) {
+    this.todoList[index].title = title;
+    this.todoList[index].status = status;
+    localStorage.setItem('todoList', JSON.stringify(this.todoList))
   }
 
   deleteTodoItem(id: string) {
