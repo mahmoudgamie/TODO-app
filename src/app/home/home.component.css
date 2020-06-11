@@ -1,0 +1,8 @@
+.card-custom {
+  max-height: 34rem;
+}
+
+.table-container {
+  max-height: 25rem;
+  overflow: auto;
+}

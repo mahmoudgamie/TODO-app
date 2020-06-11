@@ -18,7 +18,17 @@
     </ul>
   </div>
 </nav>
-<h1 *ngIf="username" class="p-3">Welcome: {{username}}</h1>
+
+<h1 *ngIf="username" class="m-3">Welcome: {{username}}</h1>
+
 <div class="container">
   <router-outlet></router-outlet>
 </div>
+
+<!-- Footer -->
+<footer id="sticky-footer" class="py-4 bg-dark text-white-50 fixed-bottom">
+    <div class="container text-center">
+      <small>Copyright &copy; By Mahmoud Gamie</small>
+    </div>
+  </footer> 
+<!-- Footer-->
