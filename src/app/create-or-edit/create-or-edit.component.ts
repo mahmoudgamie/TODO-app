@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TodoService } from 'src/services/todo.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Todo } from 'src/data-models/Todo';
+import { ToastrService } from 'ngx-toastr';
 /**
  * A single component for add and edit
  *
@@ -82,9 +83,10 @@ export class CreateOrEditComponent implements OnInit, AfterViewInit {
    * @param {TodoService} todoService instance for todoService
    * @param {Router} router instance for router for navigation
    * @param {ActivatedRoute} activatedRoute instance of activatedRoute to get url params
+   * @param {ToastrService} toastr instance of toastr for alerts
    * @memberof CreateOrEditComponent
    */
-  constructor(private fb: FormBuilder, private todoService: TodoService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private toastr: ToastrService, private todoService: TodoService, private router: Router, private activatedRoute: ActivatedRoute) { }
   /**
    * gets id from params and retrieves Todo item accordingly
    * 
@@ -139,6 +141,7 @@ export class CreateOrEditComponent implements OnInit, AfterViewInit {
   createTodoItem() {
     const title = this.controlForm.get('title').value;
     this.todoService.addTodoItem(title);
+    this.toastr.success('Todo Item Created Successfully')
     if (this.createAnotherTodo) {
       this.controlForm.reset();
       this.titleInput.nativeElement.focus();
@@ -156,6 +159,7 @@ export class CreateOrEditComponent implements OnInit, AfterViewInit {
     const title = this.controlForm.get('title').value;
     const status = this.controlForm.get('status').value;
     this.todoService.updateTodoItem(this.todoItemIndex, title, status);
+    this.toastr.success('Todo Item Updated Successfully')
     this.router.navigate(['/home']);
   }
   /**

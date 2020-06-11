@@ -4,6 +4,8 @@ import { TodoService } from 'src/services/todo.service';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/services/users.service';
 import { User } from 'src/data-models/User';
+import { ToastrService } from 'ngx-toastr';
+
 /**
  * a component to provide listing for todo list and todo item CRUD
  *
@@ -45,9 +47,10 @@ export class HomeComponent implements OnInit {
    * @param {TodoService} todoService creates todoService instance
    * @param {Router} router creates router instance for navigation
    * @param {UsersService} usersService creates usersService instance
+   * @param {ToastrService} toastr instance of toastr for alerts
    * @memberof HomeComponent
    */
-  constructor(private todoService: TodoService, private router: Router, private usersService: UsersService) { }
+  constructor(private todoService: TodoService, private toastr: ToastrService, private router: Router, private usersService: UsersService) { }
   /**
    * gets todo list and user, then updates localStorage
    *
@@ -76,7 +79,8 @@ export class HomeComponent implements OnInit {
    */
   delete() {
     this.todoService.deleteTodoItem(this.deleteIndex);
-    this.router.navigate(['/home'])
+    this.toastr.success('Todo Item Deleted');
+    this.router.navigate(['/home']);
   }
   /**
    * displays edit and delete btns according to user privilege
@@ -88,7 +92,7 @@ export class HomeComponent implements OnInit {
   checkPrivilege(createdByUserId: number): boolean {
     // admin have full privilege
     if (this.currentUser.role === "ADMIN") {
-      return true
+      return true;
     }
     // contributor have privilege to his own todo items
     if (this.currentUser.role === "CONTRIBUTOR") {
