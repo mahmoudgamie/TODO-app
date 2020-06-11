@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/services/auth.service';
 import { Router } from '@angular/router';
 import { TodoService } from 'src/services/todo.service';
+import { ToastrService } from 'ngx-toastr';
 /**
  * provides login logic for users
  *
@@ -38,9 +39,10 @@ export class LoginComponent implements OnInit {
    * @param {FormBuilder} fb creates form builder instance
    * @param {AuthService} auth instance of authentication
    * @param {Router} router instance of router
+   * @param {ToastrService} toastr instance of toastr for alerts
    * @memberof LoginComponent
    */
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { }
+  constructor(private fb: FormBuilder, private toastr: ToastrService, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -67,6 +69,8 @@ export class LoginComponent implements OnInit {
     const password = form.get('password').value;
     if (this.auth.login(username, password)) {
       this.router.navigate(['/home']);
+    } else {
+      this.toastr.error('Invalid Username Or Password !');
     }
   }
 
