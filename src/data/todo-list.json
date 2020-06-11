@@ -1,51 +1,37 @@
 [
   {
-    "id": 1,
     "title": "Wash the dishes",
     "status": "Pending",
-    "createdByUserId": 1,
-    "createdAt": ""
+    "createdByUserId": 1
   },
   {
-    "id": 2,
     "title": "Iron the clothes",
     "status": "Started",
-    "createdByUserId": 2,
-    "createdAt": ""
+    "createdByUserId": 2
   },
   {
-    "id": 3,
     "title": "Go shopping",
     "status": "Completed",
-    "createdByUserId": 3,
-    "createdAt": ""
+    "createdByUserId": 3
   },
   {
-    "id": 4,
     "title": "Call my laywer",
     "status": "Started",
-    "createdByUserId": 1,
-    "createdAt": ""
+    "createdByUserId": 1
   },
   {
-    "id": 5,
     "title": "Update my computer",
     "status": "Pending",
-    "createdByUserId": 2,
-    "createdAt": ""
+    "createdByUserId": 2
   },
   {
-    "id": 6,
     "title": "Wash the car",
     "status": "completed",
-    "createdByUserId": 2,
-    "createdAt": ""
+    "createdByUserId": 2
   },
   {
-    "id": 7,
     "title": "Feed my cat",
     "status": "Pending",
-    "createdByUserId": 3,
-    "createdAt": ""
+    "createdByUserId": 3
   }
 ]
