@@ -31,6 +31,7 @@ Users and Todo list are mocked up using todo-list.json and users.json, the todo 
 
 ng-select for selectbox https://github.com/ng-select/ng-select
 ngx-toastr for alerts https://www.npmjs.com/package/ngx-toastr
+compodoc for documentation https://compodoc.app/
 bootsrap 4 for css https://getbootstrap.com/
 ng-bootstrap https://github.com/ng-bootstrap/ng-bootstrap
 
