@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CreateOrEditComponent } from './create-or-edit/create-or-edit.component';
 import { AuthGuardService } from 'src/services/auth-guard.service';
+import { PrivilegeGuardService } from 'src/services/privilege-guard.service';
 
 
 const routes: Routes = [
@@ -29,7 +30,7 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: CreateOrEditComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService, PrivilegeGuardService]
   }
 ];
 

@@ -17,7 +17,7 @@
             <ng-select labelForId="status" [items]="statusValues" formControlName="status" placeholder="Select Status">
             </ng-select>
           </div>
-          <div class="form-group form-check">
+          <div class="form-group form-check" *ngIf="formMode !== 'edit'">
             <input type="checkbox" [checked]="createAnotherTodo" (change)="createAnotherTodo = !createAnotherTodo"
               class="form-check-input" id="create-another-todo">
             <label class="form-check-label" for="create-another-todo">Create Another TODO</label>
