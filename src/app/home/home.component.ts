@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Todo } from 'src/data-models/Todo';
 import { TodoService } from 'src/services/todo.service';
 import { Router } from '@angular/router';
+import { UsersService } from 'src/services/users.service';
+import { User } from 'src/data-models/User';
 
 @Component({
   selector: 'app-home',
@@ -12,22 +14,35 @@ export class HomeComponent implements OnInit {
 
   todoList: Todo[];
   deleteIndex: number;
-  constructor(private todoService: TodoService, private router: Router) { }
+  currentUser: User;
+  constructor(private todoService: TodoService, private router: Router, private usersService: UsersService) { }
 
   ngOnInit(): void {
     this.todoList = this.todoService.getTodoList();
     localStorage.setItem('todoList', JSON.stringify(this.todoList));
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
-  getDeleteIndex(index: number) {
-    this.deleteIndex = index;
+  getUserName(id: number): User {
+    return this.usersService.getUserById(id)
   }
+
 
   delete() {
-    console.log('ih');
-    
     this.todoService.deleteTodoItem(this.deleteIndex);
     this.router.navigate(['/home'])
+  }
+
+  checkPrivilege(createdByUserId: number): boolean {
+    if (this.currentUser.role === "ADMIN") {
+      return true
+    }
+    if (this.currentUser.role === "CONTRIBUTOR") {
+      if (createdByUserId == this.currentUser.id) {
+        return true;
+      }
+    }
+    return false;
   }
 
 }

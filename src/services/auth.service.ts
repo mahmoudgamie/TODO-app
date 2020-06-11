@@ -1,31 +1,34 @@
 import { Injectable } from '@angular/core';
 import { User } from 'src/data-models/User';
-import users from '../data/users.json'
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  users: User[] = users;
+  users: User[];
   authentication = new BehaviorSubject(false);
   getAuthentication = this.authentication.asObservable();
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private usersService: UsersService) {
     if (localStorage.getItem('status') === 'isAuthenticated') {
       this.updateAuthentication(true);
     }
+    this.users = this.usersService.getUsers();
 
   }
 
   login(username: string, password: string): boolean {
-    const user = users.find(u => u.username === username.trim().toLowerCase() && u.password === password)
+    const user = this.users.find(u => u.username === username.trim().toLowerCase() && u.password === password)
     if (user) {
       localStorage.setItem('currentUser', JSON.stringify(user));
       localStorage.setItem('status', 'isAuthenticated');
+      this.usersService.updateUsername(user.username);
       this.updateAuthentication(true);
+
       return true;
     } else {
       return false;
@@ -35,6 +38,7 @@ export class AuthService {
   logout(): void {
     localStorage.clear();
     this.updateAuthentication(false);
+    this.usersService.updateUsername('')
     this.router.navigate(['login']);
   }
 

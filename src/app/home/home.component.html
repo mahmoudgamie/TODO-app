@@ -23,12 +23,12 @@
                 <th>{{i + 1}}</th>
                 <td>{{ item.title }}</td>
                 <td>{{ item.status }}</td>
-                <td>{{ item.createdByUserId }}</td>
+                <td>{{ getUserName(item.createdByUserId).username }}</td>
                 <td>
-                  <a routerLink="/edit/{{i}}" class="btn btn-outline-primary">Edit</a>
+                  <a *ngIf="checkPrivilege(item.createdByUserId)" routerLink="/edit/{{i}}" class="btn btn-outline-primary">Edit</a>
                 </td>
                 <td>
-                  <button type="button" data-toggle="modal" (click)="getDeleteIndex(i)" data-target="#deleteModal"
+                  <button *ngIf="checkPrivilege(item.createdByUserId)" type="button" data-toggle="modal" (click)="deleteIndex = i" data-target="#deleteModal"
                     class="btn btn-outline-danger">Delete</button>
                 </td>
               </tr>
