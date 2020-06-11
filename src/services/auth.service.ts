@@ -3,6 +3,8 @@ import { User } from 'src/data-models/User';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { UsersService } from './users.service';
+import { TodoService } from './todo.service';
+import todo from '../data/todo-list.json'
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class AuthService {
   authentication = new BehaviorSubject(false);
   getAuthentication = this.authentication.asObservable();
 
-  constructor(private router: Router, private usersService: UsersService) {
+  constructor(private router: Router, private usersService: UsersService, private todoService: TodoService) {
     if (localStorage.getItem('status') === 'isAuthenticated') {
       this.updateAuthentication(true);
     }
@@ -37,6 +39,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.clear();
+    // this.todoService.todoList = todo;
     this.updateAuthentication(false);
     this.usersService.updateUsername('')
     this.router.navigate(['login']);

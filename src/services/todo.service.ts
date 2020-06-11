@@ -13,7 +13,6 @@ export class TodoService {
   currentUser: User
 
   constructor() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (localStorage.getItem('todoList')) {
       this.todoList = JSON.parse(localStorage.getItem('todoList'));
     }
@@ -28,6 +27,7 @@ export class TodoService {
   }
 
   addTodoItem(title: string): void {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     let todoItem = new Todo();
     todoItem.title = title;
     todoItem.createdByUserId = this.currentUser.id;
