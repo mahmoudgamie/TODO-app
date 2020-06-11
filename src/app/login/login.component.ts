@@ -13,6 +13,11 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup
 
+    // getter for easy access to form fields
+    get f() {
+      return this.loginForm.controls;
+    }
+
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {

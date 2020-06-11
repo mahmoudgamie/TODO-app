@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+.ng-select.custom .ng-select-container {
+  border-color: #28a745;
+}
+
+.ng-select-focused.ng-select.custom .ng-select-container {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}

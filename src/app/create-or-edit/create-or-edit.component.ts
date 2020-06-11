@@ -18,6 +18,13 @@ export class CreateOrEditComponent implements OnInit, AfterViewInit {
   formMode: string;
   createAnotherTodo: boolean;
 
+  // getter for easy access to form fields
+
+  get f() {
+    return this.controlForm.controls;
+  }
+
+
   constructor(private fb: FormBuilder, private todoService: TodoService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {

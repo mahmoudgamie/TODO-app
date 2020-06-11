@@ -1,6 +1,6 @@
 <div class="row pt-5">
   <div class="col-sm-6 mx-auto">
-    <div class="card rounded-0">
+    <div class="card rounded-5">
       <div class="card-header">
         <h3 *ngIf="formMode !== 'edit'" class="mb-0">Create TODO</h3>
         <h3 *ngIf="formMode === 'edit'" class="mb-0">Edit TODO: {{todoItemIndex + 1}}</h3>
@@ -9,12 +9,19 @@
         <form class="form" [formGroup]="controlForm" (submit)="saveForm()">
           <div class="form-group">
             <label for="title">Title</label>
-            <input #titleInput type="text" autocomplete="off" id="title" formControlName="title"
-              class="form-control rounded-0" required>
+            <input #titleInput type="text" autocomplete="off" id="title" formControlName="title" class="form-control"
+              required [ngClass]="{
+                'is-valid':f.title.valid,
+                'is-invalid':f.title.invalid && (f.title.dirty || f.title.touched) && f.title.errors?.required
+              }">
+            <div class="invalid-feedback mt-2"
+              *ngIf="f.title.invalid && (f.title.dirty || f.title.touched) && f.title.errors?.required">
+              Title is required</div>
           </div>
           <div class="form-group" *ngIf="formMode === 'edit'">
             <label for="status">Status</label>
-            <ng-select labelForId="status" [items]="statusValues" formControlName="status" placeholder="Select Status">
+            <ng-select labelForId="status" class="custom" [clearable]="false" [items]="statusValues" formControlName="status"
+              placeholder="Select Status" required>
             </ng-select>
           </div>
           <div class="form-group form-check" *ngIf="formMode !== 'edit'">
@@ -24,7 +31,10 @@
           </div>
           <div class="d-flex justify-content-end">
             <a routerLink="/home" class="btn btn-danger m-1">Cancel</a>
-            <button type="submit" class="btn btn-success m-1">Save</button>
+            <button type="submit" *ngIf="formMode !== 'edit'" [disabled]="controlForm.controls.title.invalid"
+              class="btn btn-success m-1">Save</button>
+            <button type="submit" *ngIf="formMode === 'edit'" [disabled]="controlForm.invalid"
+              class="btn btn-success m-1">Save</button>
           </div>
         </form>
       </div>
